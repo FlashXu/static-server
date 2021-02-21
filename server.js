@@ -35,7 +35,6 @@ var server = http.createServer(function (request, response) {
       jpg: "jpeg",
     };
     let fileType = path.substr(path.indexOf(".") + 1);
-    fileType = fileType === "js" ? "javascript" : fileType;
     response.setHeader(
       "Content-Type",
       `text/${fileList[fileType] || "html"};charset=utf-8`
@@ -46,24 +45,6 @@ var server = http.createServer(function (request, response) {
     response.write(`request path: ${path}, 您访问的页面不存在\n`);
   }
   response.end();
-
-  /* 根据不同路径进行不同回复 */
-  //   if (path === "/") {
-  //     response.statusCode = 200;
-  //     response.setHeader("Content-Type", "text/html;charset=utf-8");
-  //     response.write(fs.readFileSync("./public/index.html"));
-  //     response.end();
-  //   } else if (path === "/style.css") {
-  //     response.statusCode = 200;
-  //     response.setHeader("Content-Type", "text/css;charset=utf-8");
-  //     response.write(fs.readFileSync("./public/style.css"));
-  //     response.end();
-  //   } else {
-  //     response.statusCode = 404;
-  //     response.setHeader("Content-Type", "text/html;charset=utf-8");
-  //     response.write(`request path: ${path}, 您访问的页面不存在\n`);
-  //     response.end();
-  //   }
 });
 
 server.listen(port); // 开始监听指定端口
